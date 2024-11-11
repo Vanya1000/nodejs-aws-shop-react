@@ -7,6 +7,19 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { theme } from "~/theme";
+import axios from "axios";
+
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const { status, data } = error.response || {};
+    if (status === 401 || status === 403) {
+      const message = data?.message || "An error occurred. Please try again.";
+      alert(`Error(${status}): ${message}`);
+    }
+    return Promise.reject(error);
+  }
+);
 
 const queryClient = new QueryClient({
   defaultOptions: {
