@@ -11,8 +11,7 @@
     "test:coverage": "vitest run --coverage",
     "lint": "eslint --ignore-path .gitignore --fix src",
     "prettier": "prettier src --write",
-    "deploy": "npm run build && npm run deploy:cdk",
-    "deploy:cdk": "npx cdk deploy --profile admin_aws_sso_profile_name"
+    "deploy:cdk": "npm run build && npx cdk deploy --profile admin_aws_sso_profile_name"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
